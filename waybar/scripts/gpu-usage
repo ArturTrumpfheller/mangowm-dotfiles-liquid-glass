@@ -1,0 +1,24 @@
+#!/bin/sh
+
+for device in /sys/class/drm/card[0-9]*/device; do
+    [ -r "$device/vendor" ] || continue
+    [ -r "$device/gpu_busy_percent" ] || continue
+
+    vendor=$(cat "$device/vendor" 2>/dev/null)
+
+    # AMD
+    [ "$vendor" = "0x1002" ] || continue
+
+    usage=$(cat "$device/gpu_busy_percent" 2>/dev/null)
+
+    case "$usage" in
+        ''|*[!0-9]*)
+            continue
+            ;;
+    esac
+
+    printf 'GPU %s%%\n' "$usage"
+    exit 0
+done
+
+printf 'GPU ?\n'

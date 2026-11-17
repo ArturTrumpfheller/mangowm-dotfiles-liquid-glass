@@ -1,0 +1,96 @@
+/* Wallpaper Glass: no tint, light frosted translucency, no shadows. */
+@define-color fg #f3f0eb;
+@define-color muted #c6c2bd;
+@define-color border rgba(244, 240, 232, 0.25);
+@define-color glass rgba(20, 20, 20, 0.54);
+@define-color capsule rgba(255, 255, 255, 0.065);
+@define-color hover rgba(255, 255, 255, 0.15);
+
+* {
+    font-family: "Noto Sans Mono", monospace;
+    font-size: 13px;
+    font-weight: 500;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+window#waybar {
+    background-color: @glass;
+    color: @fg;
+    border-radius: 8px;
+    border: 1px solid @border;
+    box-shadow: none;
+}
+
+.modules-left, .modules-center, .modules-right { margin: 0 5px; }
+
+#mango-workspaces, #workspaces, #tags,
+#mango-layout, #layout, #mango-window, #window,
+#clock, #bluetooth, #network, #pulseaudio,
+#custom-brightness, #backlight, #cpu, #custom-gpu, #memory, #tray {
+    margin: 5px 2px;
+    padding: 0 10px;
+    color: @fg;
+    background-color: @capsule;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.045);
+    box-shadow: none;
+}
+
+#workspaces, #tags { padding: 0 4px; }
+#workspaces button, #tags button {
+    padding: 0 8px;
+    min-width: 19px;
+    min-height: 23px;
+    margin: 2px 1px;
+    color: @fg;
+    border-radius: 8px;
+    background: transparent;
+    border: 1px solid transparent;
+    box-shadow: none;
+    text-shadow: none;
+}
+#workspaces button label { color: @fg; }
+#workspaces button.empty, #workspaces button.empty label,
+#workspaces button.occupied, #workspaces button.occupied label,
+#tags button.empty, #tags button.occupied { color: @fg; }
+#workspaces button.active, #tags button.focused {
+    color: #fffdf8;
+    background: rgba(250, 247, 240, 0.22);
+    border: 1px solid rgba(250, 247, 240, 0.30);
+    font-weight: 700;
+}
+#workspaces button.active label { color: #fffdf8; font-weight: 700; }
+#workspaces button:hover, #tags button:hover { background: @hover; }
+#workspaces button.urgent, #tags button.urgent {
+    background: rgba(198, 110, 109, 0.28);
+    border: 1px solid rgba(224, 152, 151, 0.55);
+}
+
+#clock {
+    color: #fffdf8;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.10);
+    border-color: rgba(255, 255, 255, 0.10);
+    padding: 0 16px;
+}
+#window { color: @muted; }
+#network.disconnected, #pulseaudio.muted { color: #e3b3ad; }
+#bluetooth.off, #bluetooth.disabled, #bluetooth.no-controller { color: @muted; }
+#tray { padding: 0 9px; }
+#tray > .passive { -gtk-icon-effect: dim; }
+#tray > .needs-attention { -gtk-icon-effect: highlight; }
+
+#tray menu, tooltip {
+    color: @fg;
+    background: rgba(24, 24, 24, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.21);
+    border-radius: 8px;
+    box-shadow: none;
+}
+#tray menu menuitem { color: @fg; border-radius: 6px; }
+#tray menu menuitem:hover { background: @hover; }
+tooltip label { color: @fg; padding: 6px 8px; }

@@ -1,0 +1,103 @@
+{
+  "layer": "top",
+  "position": "bottom",
+  "height": 42,
+  "spacing": 4,
+  "fixed-center": true,
+  "reload_style_on_change": true,
+  "exclusive": true,
+  "margin-top": 0,
+  "margin-bottom": 6,
+  "margin-left": 8,
+  "margin-right": 8,
+  "modules-left": [
+    "mango/workspaces",
+    "mango/layout",
+    "mango/window"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "bluetooth",
+    "network",
+    "pulseaudio",
+    "custom/brightness",
+    "cpu",
+    "custom/gpu",
+    "memory",
+    "tray"
+  ],
+  "mango/workspaces": {
+    "format": "{index}",
+    "hide-empty": false,
+    "on-click": "activate",
+    "on-click-right": "toggle",
+    "overview-label": "overview"
+  },
+  "mango/layout": {
+    "format": "{symbol}"
+  },
+  "mango/window": {
+    "format": "{title}",
+    "icon": false,
+    "max-length": 55
+  },
+  "clock": {
+    "format": "{:%H:%M}",
+    "format-alt": "{:%a, %d.%m.%Y}",
+    "tooltip-format": "{:%A, %d. %B %Y}"
+  },
+  "bluetooth": {
+    "format-on": "BT",
+    "format-connected": "BT {num_connections}",
+    "format-off": "",
+    "format-disabled": "",
+    "format-no-controller": "",
+    "tooltip-format-connected": "{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "on-click": "blueman-manager"
+  },
+  "network": {
+    "interval": 2,
+    "format-wifi": "WLAN {signalStrength}%",
+    "format-ethernet": "LAN",
+    "format-linked": "LAN",
+    "format-disconnected": "offline",
+    "tooltip-format-wifi": "{essid}\n{ipaddr}",
+    "tooltip-format-ethernet": "{ifname}\n{ipaddr}"
+  },
+  "pulseaudio": {
+    "format": "VOL {volume}%",
+    "format-bluetooth": "VOL {volume}%",
+    "format-muted": "VOL muted",
+    "scroll-step": 5
+  },
+  "custom/brightness": {
+    "exec": "$HOME/.config/waybar/scripts/brightness",
+    "interval": 5,
+    "exec-on-event": true,
+    "format": "{}",
+    "tooltip": false,
+    "on-scroll-up": "ddcutil setvcp 10 + 5 >/dev/null 2>&1",
+    "on-scroll-down": "ddcutil setvcp 10 - 5 >/dev/null 2>&1"
+  },
+  "cpu": {
+    "interval": 2,
+    "format": "CPU {usage}%"
+  },
+  "custom/gpu": {
+    "exec": "$HOME/.config/waybar/scripts/gpu-usage",
+    "interval": 2,
+    "format": "{}",
+    "tooltip": false
+  },
+  "memory": {
+    "interval": 2,
+    "format": "RAM {percentage}%"
+  },
+  "tray": {
+    "icon-size": 15,
+    "spacing": 6
+  }
+}

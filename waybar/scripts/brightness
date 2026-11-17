@@ -1,0 +1,15 @@
+#!/bin/sh
+
+output=$(ddcutil getvcp 10 2>/dev/null)
+
+value=$(
+    printf '%s\n' "$output" |
+    sed -n 's/.*current value = *\([0-9][0-9]*\).*/\1/p' |
+    head -n 1
+)
+
+if [ -n "$value" ]; then
+    printf 'BRT %s%%\n' "$value"
+else
+    printf 'BRT ?\n'
+fi
